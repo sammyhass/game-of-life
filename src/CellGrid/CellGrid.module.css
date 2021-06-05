@@ -4,14 +4,21 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
   grid-template-rows: auto;
-  transform: scale(1.1);
-  margin-top: 1.2em;
+  transform: scale(1.5);
+  margin-top: 7rem;
 }
 
+@media screen and (max-width: 800px) {
+  .cellGrid {
+    transform: scale(1.1);
+    margin-top: 2rem;
+  }
+}
 .btn {
-  padding: 10px;
-  margin: 10px;
+  padding: 20px;
+  margin-top: 10px;
   border-radius: 10px;
+  min-width: 300px;
   outline: none;
   border: none;
   background: #d69;
