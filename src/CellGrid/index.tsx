@@ -14,6 +14,10 @@ const CellGrid: React.FC<CellGridProps> = ({ rows = 20, cols = 20 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState(100);
 
+  useEffect(() => {
+    if (!livingCells.length) setIsPlaying(false);
+  }, [livingCells]);
+
   const toggleAliveCell = (i: number) => {
     if (livingCells.includes(i))
       setLivingCells(livingCells.filter(c => c !== i));
