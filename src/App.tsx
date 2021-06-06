@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import CellGrid from './CellGrid';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
-      <h1>Game of Life</h1>
-      <CellGrid />
+      <Navbar />
+      <div style={{ marginTop: '10px' }}>
+        <CellGrid />
+      </div>
+      <Footer />
     </div>
   );
 }

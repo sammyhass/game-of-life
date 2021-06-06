@@ -1,0 +1,22 @@
+.Navbar {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  background: #359;
+  margin-top: 0;
+  padding: 10px;
+}
+.title {
+  font-size: 2em;
+}
+.links {
+  font-size: 1.6em;
+}
+.links > a {
+  color: white;
+}
+.links > a:visited {
+  color: white;
+}

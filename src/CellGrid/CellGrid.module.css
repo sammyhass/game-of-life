@@ -1,3 +1,9 @@
+.grid {
+  display: flex;
+  margin: auto;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
+}
 .cellGrid {
   width: 400px;
   height: 400px;
@@ -9,18 +15,49 @@
 }
 
 @media screen and (max-width: 800px) {
-  .cellGrid {
-    transform: scale(1.1);
-    margin-top: 2rem;
-  }
 }
 .btn {
   padding: 20px;
   margin-top: 10px;
   border-radius: 10px;
-  min-width: 300px;
   outline: none;
+  width: 100%;
   border: none;
   background: #d69;
   color: white;
+  user-select: none;
+  max-width: 350px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn:hover {
+  background: rgb(163, 76, 114);
+}
+
+.opts {
+  background: #eee;
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  border-radius: 10px;
+}
+
+.pausePlayBtn {
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+}
+@media screen and (max-width: 1000px) {
+  .grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cellGrid {
+    transform: scale(1.1);
+    margin-top: 2rem;
+  }
 }
