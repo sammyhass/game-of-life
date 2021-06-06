@@ -24,42 +24,9 @@ const CellGrid: React.FC<CellGridProps> = ({ rows = 20, cols = 20 }) => {
     else setLivingCells([...livingCells, i]);
   };
 
-  const updateLivingCells = useCallback((): number[] => {
-    // iterate through each living cell
-    const updatedCells = [];
-    for (let i = 0; i < livingCells.length; i++) {
+  const getLivingNeighbours = useCallback(
+    (i: number) => {
       let numLivingNeighbours = 0;
-
-      // check cells at cell-21 -> cell-19
-      for (
-        let x = livingCells[i] - (cols + 1);
-        x <= livingCells[i] - (cols - 1);
-        x++
-      ) {
-        if (livingCells.includes(x)) numLivingNeighbours++;
-      }
-
-      // check cells at cell-1 and cell+1
-      if (livingCells.includes(livingCells[i] - 1)) numLivingNeighbours++;
-      if (livingCells.includes(livingCells[i] + 1)) numLivingNeighbours++;
-
-      // check cells at cell+19 -> cell+21
-      for (
-        let x = livingCells[i] + (cols - 1);
-        x <= livingCells[i] + (cols + 1);
-        x++
-      ) {
-        if (livingCells.includes(x)) numLivingNeighbours++;
-      }
-
-      if (numLivingNeighbours === 2 || numLivingNeighbours === 3)
-        updatedCells.push(livingCells[i]);
-    }
-
-    // check dead cells
-    for (let i = 0; i < cols * rows; i++) {
-      let numLivingNeighbours = 0;
-      if (livingCells.includes(i)) continue;
       if (livingCells.includes(i - 1)) numLivingNeighbours++;
       if (livingCells.includes(i + 1)) numLivingNeighbours++;
 
@@ -68,6 +35,23 @@ const CellGrid: React.FC<CellGridProps> = ({ rows = 20, cols = 20 }) => {
 
       for (let x = i + (cols - 1); x <= i + (cols + 1); x++)
         if (livingCells.includes(x)) numLivingNeighbours++;
+      return numLivingNeighbours;
+    },
+    [livingCells]
+  );
+  const updateLivingCells = useCallback((): number[] => {
+    // iterate through each living cell
+    const updatedCells = [];
+    for (let i = 0; i < livingCells.length; i++) {
+      const numLivingNeighbours = getLivingNeighbours(livingCells[i]);
+      if (numLivingNeighbours === 2 || numLivingNeighbours === 3)
+        updatedCells.push(livingCells[i]);
+    }
+
+    // check dead cells
+    for (let i = 0; i < cols * rows; i++) {
+      if (livingCells.includes(i)) continue;
+      let numLivingNeighbours = getLivingNeighbours(i);
       if (numLivingNeighbours === 3) updatedCells.push(i);
     }
     return updatedCells;
@@ -76,9 +60,11 @@ const CellGrid: React.FC<CellGridProps> = ({ rows = 20, cols = 20 }) => {
   const interval = useRef<any>(-1);
   useEffect(() => {
     if (interval.current) clearInterval(interval.current);
-    interval.current = setInterval(() => {
-      isPlaying && setLivingCells(updateLivingCells());
-    }, speed);
+    interval.current =
+      isPlaying &&
+      setInterval(() => {
+        setLivingCells(updateLivingCells());
+      }, speed);
   }, [isPlaying, speed, livingCells]);
 
   return (
