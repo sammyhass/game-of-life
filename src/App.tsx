@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import CellGrid from './CellGrid';
+import CellGrid from './components/CellGrid';
 import Navbar from './components/Navbar';
 
 function App() {
