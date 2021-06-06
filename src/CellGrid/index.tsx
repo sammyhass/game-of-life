@@ -91,6 +91,13 @@ const CellGrid: React.FC<CellGridProps> = ({ rows = 20, cols = 20 }) => {
           />
         </div>
         <button
+          className={styles.btn}
+          style={{ background: '#f00', fontSize: '2em' }}
+          onClick={() => setLivingCells([])}
+        >
+          Clear
+        </button>
+        <button
           className={[styles.btn, styles.pausePlayBtn].join(' ')}
           onClick={() => setIsPlaying(!isPlaying)}
         >

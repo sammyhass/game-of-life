@@ -3,12 +3,11 @@
   height: 50px;
   background: #222;
   width: 100%;
-  overflow: hidden;
   color: white;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  bottom: 0;
+  bottom: -40px;
 }
