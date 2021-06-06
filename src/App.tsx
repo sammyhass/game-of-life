@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import CellGrid from './CellGrid';
-import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -11,7 +10,6 @@ function App() {
       <div style={{ marginTop: '10px' }}>
         <CellGrid />
       </div>
-      <Footer />
     </div>
   );
 }
